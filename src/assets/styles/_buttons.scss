@@ -1,0 +1,28 @@
+@import "variables";
+.btn {
+    color: $standard-text;
+    &:hover {
+        color: $standard-text !important;
+        outline: none !important;
+    }
+    &:focus-visible {
+        outline: none !important;
+    }
+}
+.btn-gold-gradient {
+    background: linear-gradient(45deg, $gold-color, $ash-gold);
+    border: 1px solid $gold-border;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, $pink-color, $purple);
+    border: 1px solid $pink-border;
+    &:focus,&:active,&:hover {
+        border: 1px solid $pink-border;
+        box-shadow: none;
+        &:active {
+            border: 1px solid $pink-border;
+            box-shadow: none;
+        }
+    }
+}

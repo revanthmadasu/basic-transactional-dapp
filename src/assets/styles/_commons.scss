@@ -1,0 +1,24 @@
+// colors
+@import "./variables";
+.gold-color {
+    color: $gold-color;
+}
+
+.focus-gold-outline {
+    &:focus-visible {
+        outline: 1px solid $gold-color;
+    }
+}
+// blurs
+.blur-10 {
+    backdrop-filter: blur(10px);
+}
+
+.blur-20 {
+    backdrop-filter: blur(20px);
+}
+
+// rgba backgrounds
+.dark-bg-2 {
+    background: rgba(0,0,0,0.2);
+}
