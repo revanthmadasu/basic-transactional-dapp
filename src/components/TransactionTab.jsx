@@ -1,6 +1,7 @@
 export const TransactionTab = () => {
     return (
         <div className="content form text-left p-1">
+            <h4>Transfer <span className="gold-color">Ethereum</span></h4>
             <form action="">
                 <div className="form-group d-flex flex-column my-2">
                     <label htmlFor="senderAddress">Sender ETH Address</label>
@@ -20,7 +21,7 @@ export const TransactionTab = () => {
 
                 <div className="actions text-right">
                     <div className="d-inline-flex flex-column my-2">
-                        <button type="submit" className="btn btn-primary rounded-pill">Transfer</button>
+                        <button type="submit" className="btn btn-primary">Transfer</button>
                         <div>
                             <small className="form-text text-muted">Click the button to deposit your ETH to the contract.</small>
                         </div>

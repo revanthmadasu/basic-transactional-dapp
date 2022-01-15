@@ -5,8 +5,8 @@ export const NavTabs = (props) => {
     const tabBtns = tabs.map(tab => {
         return (
             <li className="nav-item" role="presentation">
-                <button className="nav-link" id={"nav-"+tab.tabId+"-tab"} data-bs-toggle="tab" data-bs-target={"#nav-"+tab.tabId}
-                    type="button" role="tab" aria-controls={"nav-"+tab.tabId} aria-selected="">
+                <button className={"nav-link" + (tab.initialActive ? " active" : "")} id={"nav-"+tab.tabId+"-tab"} data-bs-toggle="tab" data-bs-target={"#nav-"+tab.tabId}
+                    type="button" role="tab" aria-controls={"nav-"+tab.tabId}>
                         {tab.navTitle}
                 </button>
             </li>
@@ -14,7 +14,7 @@ export const NavTabs = (props) => {
     });
     const tabContent = tabs.map(tab => {
         return(
-            <div className="tab-pane fade" id={"nav-"+tab.tabId} role="tabpanel" aria-labelledby={"nav-"+tab.tabId+"-tab"}>
+            <div className={"tab-pane fade" + (tab.initialActive ? " active show" : "")} id={"nav-"+tab.tabId} role="tabpanel" aria-labelledby={"nav-"+tab.tabId+"-tab"}>
                 {tab.tabContent}
             </div>
         );

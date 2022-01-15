@@ -8,12 +8,13 @@ export const HomePage = () => {
         {
             tabId: "transfer",
             navTitle: "Transfer",
-            tabContent: <TransactionTab></TransactionTab>
+            tabContent: <TransactionTab></TransactionTab>,
+            initialActive: true
         },
         {
             tabId: "balance",
             navTitle: "Balance",
-            tabContent: <BalanceTab></BalanceTab>
+            tabContent: <BalanceTab></BalanceTab>,
         },
         {
             tabId: "approver",

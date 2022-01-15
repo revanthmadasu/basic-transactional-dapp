@@ -1,6 +1,7 @@
 @import "variables";
 button {
-    max-width: 120px;
+    width: fit-content;
+    padding: 5px 20px;
 }
 .btn {
     color: $standard-text;
@@ -15,6 +16,14 @@ button {
 .btn-gold-gradient {
     background: linear-gradient(45deg, $gold-color, $ash-gold);
     border: 1px solid $gold-border;
+    &:focus,&:active,&:hover {
+        border: 1px solid $gold-border;
+        box-shadow: none;
+        &:active {
+            border: 1px solid $gold-border;
+            box-shadow: none;
+        }
+    }
 }
 
 .btn-primary {
