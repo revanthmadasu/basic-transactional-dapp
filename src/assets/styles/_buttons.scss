@@ -1,4 +1,7 @@
 @import "variables";
+button {
+    max-width: 120px;
+}
 .btn {
     color: $standard-text;
     &:hover {

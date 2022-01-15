@@ -1,0 +1,23 @@
+@import "variables";
+.custom-tabs {
+    border-bottom: none;
+    .nav-link {
+        color: $standard-text;
+        text-transform: uppercase;
+        letter-spacing: 1.12px;
+        padding: 0.5rem 0rem;
+        margin: 0.5rem;
+        background-color: unset;
+        border: none;
+        &.active, &.active:hover, &.active:focus, &.active:focus-visible {
+            color: $pink-color;
+            border: none;
+            border-bottom: 1px solid $pink-border;
+            background-color: unset;
+        }
+        &:hover, &:focus, &:focus-visible {
+            border: none;
+            outline: none;
+        }
+    }
+};

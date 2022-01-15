@@ -1,9 +1,9 @@
 import './App.scss';
-import { TransactionPage } from './pages/transaction-page/TransactionPage';
+import { HomePage } from './pages/home-page/HomePage';
 function App() {
   return (
     <div className="App">
-        <TransactionPage></TransactionPage>
+        <HomePage></HomePage>
     </div>
   );
 }
