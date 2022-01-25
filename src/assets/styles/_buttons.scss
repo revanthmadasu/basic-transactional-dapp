@@ -29,7 +29,7 @@ button {
 .btn-primary {
     background: linear-gradient(45deg, $pink-color, $purple);
     border: 1px solid $pink-border;
-    &:focus,&:active,&:hover {
+    &:focus,&:active,&:hover, &:disabled {
         border: 1px solid $pink-border;
         box-shadow: none;
         &:active {

@@ -14,6 +14,10 @@
     backdrop-filter: blur(10px);
 }
 
+.blur-15 {
+    backdrop-filter: blur(15px);
+}
+
 .blur-20 {
     backdrop-filter: blur(20px);
 }
@@ -21,4 +25,16 @@
 // rgba backgrounds
 .dark-bg-2 {
     background: rgba(0,0,0,0.2);
+}
+
+.eth-value {
+    .value {
+        font-size: 1.75rem;
+        color: $gold-color;
+        padding-right: 0.5rem;
+    }
+    .curr-ext {
+        color: $ash-gold;
+        font-size: 0.9rem;
+    }
 }

@@ -9,7 +9,7 @@ export const TransactionContext = createContext({
 
 });
 export const HomePage = () => {
-    const [account, setAccount] = useState();
+    const [account, setAccount] = useState("0x9d4E26b4Db15B8Aa6C41e0e5f68164D99d848725");
     let [web3, setWeb3] = useState(null);
     const context = {
         web3: web3,
@@ -19,11 +19,12 @@ export const HomePage = () => {
         async function load() {
             let web3Instance = new Web3(Web3.givenProvider || "http://localhost:9545");
             setWeb3(web3Instance);
-            const accounts = await web3Instance.eth.requestAccounts();
-            setAccount(accounts[0]);
+            // const accounts = await web3Instance.eth.requestAccounts();
+            // setAccount(accounts[0]);
         }
         load();
     }, []);
+
     const tabs = [
         {
             tabId: "transfer",
@@ -44,7 +45,7 @@ export const HomePage = () => {
     ];
     return (
         <TransactionContext.Provider value={context}>
-            <div className="m-5 p-3 rounded border-light blur-20 dark-bg-2">
+            <div className="m-5 p-3 rounded border-light blur-15 dark-bg-2">
                 <div className="header text-left">
                     <h2>Welcome to your transactional dapp.</h2>
                     <h3>Send <span className="gold-color">money</span> through contract:</h3>
