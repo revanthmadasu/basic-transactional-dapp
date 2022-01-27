@@ -9,7 +9,7 @@ export const TransactionContext = createContext({
 
 });
 export const HomePage = () => {
-    const [account, setAccount] = useState("0x9d4E26b4Db15B8Aa6C41e0e5f68164D99d848725");
+    const [account, setAccount] = useState("");
     let [web3, setWeb3] = useState(null);
     const context = {
         web3: web3,
@@ -17,10 +17,10 @@ export const HomePage = () => {
     };
     useEffect(() => {
         async function load() {
-            let web3Instance = new Web3(Web3.givenProvider || "http://localhost:9545");
+            let web3Instance = new Web3(Web3.givenProvider || "http://localhost:7545");
             setWeb3(web3Instance);
-            // const accounts = await web3Instance.eth.requestAccounts();
-            // setAccount(accounts[0]);
+            const accounts = await web3Instance.eth.requestAccounts();
+            setAccount(accounts[0]);
         }
         load();
     }, []);

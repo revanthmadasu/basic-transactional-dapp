@@ -1,15 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { abi } from "../assets/abis/contractAbi";
 import { TransactionContext } from "../pages/home-page/HomePage";
 import { convertToFloat } from "../utils/utils";
 
 export const TransactionTab = () => {
-    const {web3} = useContext(TransactionContext);
+    const {web3, account} = useContext(TransactionContext);
+    const [approverContract, setApproverContract] = useState(null);
     const [form, setForm] = useState({
-        senderEth: "",
+        senderEth: account,
         receiverEth: "",
         amount: 0,
         disabled: true
     });
+
+    useEffect(() => {
+        if (web3 && account) {
+            const approverContractIns = new web3.eth.Contract(abi, account);
+            setApproverContract(approverContractIns);
+            setForm({...form, senderEth: account});
+        }
+    }, [web3, account])
 
     const inputChangeHandler = (field, event, mapper = (val) => val) => {
         const newVals = {
@@ -25,14 +35,36 @@ export const TransactionTab = () => {
     const submitAction = () => {
         if (!form.disabled) {
             if (!web3.utils.isAddress(form.senderEth)) {
-                alert('Invalid Sender Address')
+                alert('Invalid Sender Address');
+                return;
             }
             if (!web3.utils.isAddress(form.receiverEth)) {
-                alert('Invalid Receiver Address')
+                alert('Invalid Receiver Address');
+                return;
             }
-            if (form.amount <= 0) {
+            if (convertToFloat(form.amount) <= 0) {
                 alert('Invalid amount');
+                return;
             }
+            if (!approverContract) {
+                alert('Approver Contract did not create. Cannot proceed');
+                return;
+            }
+            const etherValue = web3.utils.toWei(form.amount, 'ether')
+            approverContract.methods.deposit(form.receiverEth).send(
+                {
+                    from: form.senderEth,
+                    gas: 100000,
+                    value: etherValue
+                }, (error, result) => {
+                    if (error) {
+                        alert(`Cannot perform transaction. ${JSON.stringify(error)}`);
+                        console.log(error);
+                    } else {
+                        alert(`Success. TxId: ${result}`);
+                    }
+                }
+            );
         }
     };
     const isFormValid = (form) => (form.senderEth && form.receiverEth && form.amount);
@@ -43,7 +75,7 @@ export const TransactionTab = () => {
                     <div className="form-group d-flex flex-column my-2">
                         <label htmlFor="senderAddress">Sender ETH Address</label>
                         <input type="text" className="formControl" id="senderAddress" placeholder="Enter your address"
-                            value={form.senderEth} onChange={(event) => inputChangeHandler("senderEth", event)} />
+                            value={form.senderEth} onChange={(event) => inputChangeHandler("senderEth", event)} disabled/>
                         <small className="form-text text-muted">Enter your wallet address. Note: you will need to approve this with your private key.</small>
                     </div>
                     <div className="form-group d-flex flex-column my-2">
@@ -55,7 +87,7 @@ export const TransactionTab = () => {
                     <div className="form-group d-flex flex-column my-2">
                         <label htmlFor="amount">Amount</label>
                         <input type="number" className="formControl focus-gold-outline" id="amount" placeholder="Enter amount" 
-                            value={form.amount} onChange={(event) => inputChangeHandler("amount", event, val => convertToFloat(val, -1))} />
+                            value={form.amount} onChange={(event) => inputChangeHandler("amount", event)} />
                         <small className="form-text text-muted">How much you want to send in ETH.</small>
                     </div>
 
@@ -70,7 +102,5 @@ export const TransactionTab = () => {
                     </div>
                 </div>
             </div>
-        // <TransactionContext.Consumer>
-        // </TransactionContext.Consumer>
     );
 };

@@ -6,7 +6,7 @@ export const BalanceTab = () => {
     const {web3, account} = useContext(TransactionContext);
     const [balance, setBalance] = useState(0);
     const getBalance = () => {
-        if (web3) {
+        if (web3 && account) {
             web3.eth.getBalance(account, (error, response) => {
                 if (error) {
                     alert("Error occured while trying to get balance");
