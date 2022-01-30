@@ -4,7 +4,7 @@ export const NavTabs = (props) => {
     const tabs = props.tabs;
     const tabBtns = tabs.map(tab => {
         return (
-            <li className="nav-item" role="presentation">
+            <li className="nav-item" role="presentation" key={tab.tabId}>
                 <button className={"nav-link" + (tab.initialActive ? " active" : "")} id={"nav-"+tab.tabId+"-tab"} data-bs-toggle="tab" data-bs-target={"#nav-"+tab.tabId}
                     type="button" role="tab" aria-controls={"nav-"+tab.tabId}>
                         {tab.navTitle}
